@@ -9,7 +9,7 @@
           <input type="number" class="form-control" placeholder="Quantity" v-model="quantity">
         </div>
         <div class="pull-right">
-          <button class="btn btn-success" @click="buyStock" :disabled="quantity <= 0 || Number.isInteger(quantity)">Buy</button>
+          <button class="btn btn-success" @click="buyStock" :disabled="quantity <= 0">Buy</button>
         </div>
       </div>
     </div>
@@ -30,7 +30,7 @@ export default {
         stockId: this.stock._id,
         stockName: this.stock.namaBarang,
         stockPrice: this.stock.hargaBarang,
-        quantity: this.quantity
+        quantity: Number(this.quantity)
       }
       console.log(order);
       this.$store.dispatch('buyStock', order)

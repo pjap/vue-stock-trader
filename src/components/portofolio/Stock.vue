@@ -9,7 +9,7 @@
           <input type="number" class="form-control" placeholder="Quantity" v-model="quantity">
         </div>
         <div class="pull-right">
-          <button class="btn btn-success" @click="sellStock" :disabled="quantity <= 0 || Number.isInteger(quantity)">Sell</button>
+          <button class="btn btn-success" @click="sellStock" :disabled="quantity <= 0">Sell</button>
         </div>
       </div>
     </div>
@@ -34,10 +34,10 @@ export default {
       const order = {
         stockId: this.stock.id,
         stockPrice: this.stock.price,
-        quantity: this.quantity
+        quantity: Number(this.quantity)
       }
-      console.log(JSON.stringify(this.$store.getters.stocksPortofolio) + 'XXXXXXSSSSSSSSSSSSSSSSSSS');
-      console.log(JSON.stringify(order) + 'DARI STOCK PORTOFOLIO');
+      console.log(JSON.stringify(this.$store.getters.stocksPortofolio) + '>>>>>>> Database Stock Portofolio');
+      console.log(JSON.stringify(order) + ' >>>>>>>>>>>>>>>>>>>>>>> DARI STOCK PORTOFOLIO');
       this.sellingStock(order)
     }
   }

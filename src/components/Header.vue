@@ -26,6 +26,7 @@
             <li><a href="#">Load Data</a></li>>
           </ul>
         </li>
+        <li><a href="#">${{ funds }}</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
@@ -34,6 +35,11 @@
 
 <script>
 export default {
+  computed: {
+    funds() {
+      return this.$store.getters.funds
+    }
+  }
 }
 </script>
 
