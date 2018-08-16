@@ -6,7 +6,7 @@
       </div>
       <div class="panel-body">
         <div class="pull-left">
-          <input type="number" class="form-control" placeholder="Quantity" v-model="quantity">
+          <input type="number" class="form-control" placeholder="Quantity" v-model="quantity" :class="{infoWrong: insufficientFunds}">
         </div>
         <div class="pull-right">
           <button class="btn btn-success" @click="buyStock" :disabled="insufficientFunds || quantity <= 0">{{ insufficientFunds ? 'X Funds' : 'Buy'}}</button>
@@ -48,5 +48,8 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+  .infoWrong {
+    border: 1px solid red;
+  }
 </style>
