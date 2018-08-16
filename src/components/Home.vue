@@ -4,7 +4,7 @@
     <h6>You May Save and Load Your Data</h6>
     <h6>Click On 'End Day' To Begin a New Day!</h6>
     <hr>
-    <p>Your Funds : ${{ funds }}</p>
+    <p>Your Funds : {{ funds | currency }}</p>
   </div>
 </template>
 
@@ -12,11 +12,7 @@
 export default {
   computed: {
     funds() {
-      let fund = this.$store.getters.funds
-      let parts = fund.toString().split(".")
-
-      parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-      return parts.join(".")
+      return this.$store.getters.funds
     }
   }
 }

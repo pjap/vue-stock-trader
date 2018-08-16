@@ -6,10 +6,10 @@
       </div>
       <div class="panel-body">
         <div class="pull-left">
-          <input type="number" class="form-control" placeholder="Quantity" v-model="quantity" :class="{infoWrong: insufficientFunds}">
+          <input type="number" class="form-control" placeholder="Quantity" v-model="quantity" :class="{infoWrong: insufficientQuantity}">
         </div>
         <div class="pull-right">
-          <button class="btn btn-success" @click="sellStock" :disabled="insufficientFunds || quantity <= 0">{{ insufficientFunds ? 'To Much' : 'Sell'}}</button>
+          <button class="btn btn-success" @click="sellStock" :disabled="insufficientQuantity || quantity <= 0">{{ insufficientQuantity ? 'To Much' : 'Sell'}}</button>
         </div>
       </div>
     </div>
@@ -42,7 +42,7 @@ export default {
     }
   },
   computed: {
-    insufficientFunds() {
+    insufficientQuantity() {
       return this.quantity > this.stock.quantity
     }
   }
