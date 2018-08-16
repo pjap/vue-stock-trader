@@ -17,6 +17,7 @@ export default {
     appHeader: Header
   },
   created() {
+    console.log('Created Di Panggil');
     this.$store.dispatch('initStocks')
   }
 }

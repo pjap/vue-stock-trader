@@ -1,6 +1,6 @@
 <template>
   <div>
-    <appStock v-for="stock in stocks" :stock="stock"></appStock>
+    <appStock v-for="stock in stocks" :key="stock._id" :stock="stock"></appStock>
   </div>
 </template>
 
@@ -13,6 +13,7 @@ export default {
   },
   computed: {
     stocks() {
+      // console.log(this.$store.getters.stocks)
       return this.$store.getters.stocks
     }
   }

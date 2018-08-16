@@ -1,4 +1,8 @@
-import database from '../../data/stocks'
+import Vue from 'vue'
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+
+Vue.use(VueAxios, axios)
 
 const state = {
   stocks: []
@@ -13,7 +17,6 @@ const getters = {
 const mutations = {
   'SET_STOCKS' (state, database) {
     state.stocks = database
-    // console.log(JSON.stringify(state.stocks.name) + '         IYEUUUUUUUUUUUUUUUu');
   },
   'RND_STOCKS' (state) {
 
@@ -22,10 +25,17 @@ const mutations = {
 
 const actions = {
   buyStock: ({ commit }, order) => {
-    commit()
+    // console.log(JSON.stringify(order) + ' FROM MODULES STOCKS');
+    commit('BUY_STOCK', order)
   },
   initStocks: ({ commit }) => {
-    commit('SET_STOCKS', database)
+    // commit('SET_STOCKS', database)
+    axios
+       .get('http://localhost:3000/barang')
+       .then(r => r.data)
+       .then(database => {
+       commit('SET_STOCKS', database)
+       })
   },
   randomizeStocks: ({ commit }) => {
     commit('RND_STOCKS')
