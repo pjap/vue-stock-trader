@@ -11,6 +11,7 @@
         <router-link to="/portofolio" activeClass="active" tag="li"><a>Portofolio</a></router-link>
         <router-link to="/stocks" activeClass="active" tag="li"><a>Stocks</a></router-link>
       </ul>
+      <strong class="navbar-text navbar-right">Funds: ${{ funds }}</strong>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#">End Day</a></li>
         <li class="dropdown">
@@ -26,7 +27,6 @@
             <li><a href="#">Load Data</a></li>>
           </ul>
         </li>
-        <li><a href="#">${{ funds }}</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
@@ -37,7 +37,11 @@
 export default {
   computed: {
     funds() {
-      return this.$store.getters.funds
+        let fund = this.$store.getters.funds
+
+        let parts = fund.toString().split(".")
+        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+        return parts.join(".")
     }
   }
 }

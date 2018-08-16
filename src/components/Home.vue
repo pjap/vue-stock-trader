@@ -12,7 +12,11 @@
 export default {
   computed: {
     funds() {
-      return this.$store.getters.funds
+      let fund = this.$store.getters.funds
+      let parts = fund.toString().split(".")
+
+      parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+      return parts.join(".")
     }
   }
 }
