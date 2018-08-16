@@ -11,7 +11,7 @@ const state = {
 
 const getters = {
   stocksPortofolio(state, getters) {
-    console.log(JSON.stringify(state.stocksPorto) + 'FROM PORTOFOLIO MODULES');
+    // console.log(JSON.stringify(state.stocksPorto) + 'FROM PORTOFOLIO MODULES');
     return state.stocksPorto.map(stock => {
       // console.log(JSON.stringify(stock) + ' ini stockooooooooooooooooooooo');
       const record = getters.stocks.find(element => element._id == stock.id)

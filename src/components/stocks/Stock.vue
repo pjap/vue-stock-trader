@@ -9,7 +9,7 @@
           <input type="number" class="form-control" placeholder="Quantity" v-model="quantity">
         </div>
         <div class="pull-right">
-          <button class="btn btn-success" @click="buyStock" :disabled="quantity <= 0">Buy</button>
+          <button class="btn btn-success" @click="buyStock" :disabled="insufficientFunds || quantity <= 0">{{ insufficientFunds ? 'X Funds' : 'Buy'}}</button>
         </div>
       </div>
     </div>
@@ -32,9 +32,17 @@ export default {
         stockPrice: this.stock.hargaBarang,
         quantity: Number(this.quantity)
       }
-      console.log(order);
+      // console.log(order);
       this.$store.dispatch('buyStock', order)
       this.quantity = 0
+    }
+  },
+  computed: {
+    funds() {
+      return this.$store.getters.funds
+    },
+    insufficientFunds() {
+      return this.quantity * this.stock.hargaBarang > this.funds
     }
   }
 }

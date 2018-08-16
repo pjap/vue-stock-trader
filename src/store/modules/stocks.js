@@ -25,7 +25,7 @@ const mutations = {
 
 const actions = {
   buyStock: ({ commit }, order) => {
-    console.log(JSON.stringify(order) + ' FROM MODULES STOCKS');
+    // console.log(JSON.stringify(order) + ' FROM MODULES STOCKS');
     commit('BUY_STOCK', order)
   },
   initStocks: ({ commit }) => {

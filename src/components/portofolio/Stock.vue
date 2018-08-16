@@ -9,7 +9,7 @@
           <input type="number" class="form-control" placeholder="Quantity" v-model="quantity">
         </div>
         <div class="pull-right">
-          <button class="btn btn-success" @click="sellStock" :disabled="quantity <= 0">Sell</button>
+          <button class="btn btn-success" @click="sellStock" :disabled="insufficientFunds || quantity <= 0">{{ insufficientFunds ? 'To Much' : 'Sell'}}</button>
         </div>
       </div>
     </div>
@@ -36,9 +36,14 @@ export default {
         stockPrice: this.stock.price,
         quantity: Number(this.quantity)
       }
-      console.log(JSON.stringify(this.$store.getters.stocksPortofolio) + '>>>>>>> Database Stock Portofolio');
-      console.log(JSON.stringify(order) + ' >>>>>>>>>>>>>>>>>>>>>>> DARI STOCK PORTOFOLIO');
+      // console.log(JSON.stringify(this.$store.getters.stocksPortofolio) + '>>>>>>> Database Stock Portofolio');
+      // console.log(JSON.stringify(order) + ' >>>>>>>>>>>>>>>>>>>>>>> DARI STOCK PORTOFOLIO');
       this.sellingStock(order)
+    }
+  },
+  computed: {
+    insufficientFunds() {
+      return this.quantity > this.stock.quantity
     }
   }
 }
