@@ -19,7 +19,7 @@ const mutations = {
     state.stocks = database
   },
   'RND_STOCKS' (state) {
-    console.log(JSON.stringify(state.stocks) + 'INI STOCKKKKSSS');
+    // console.log(JSON.stringify(state.stocks) + 'INI STOCKKKKSSS');
     state.stocks.forEach(stock => {
       stock.hargaBarang = Math.round(stock.hargaBarang * (1 + Math.random() - 0.5))
     })

@@ -23,7 +23,7 @@
               aria-haspopup="true"
               aria-expanded="false">Save & Load <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Save Data</a></li>
+            <li><a href="#" @click="saveData">Save Data</a></li>
             <li><a href="#">Load Data</a></li>
           </ul>
         </li>
@@ -35,6 +35,9 @@
 
 <script>
 import { mapActions } from 'vuex'
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+import VueResource from 'vue-resource'
 
 export default {
   data() {
@@ -53,6 +56,27 @@ export default {
     ]),
     endDay() {
       this.randomizeStocks()
+    },
+    saveData() {
+      const data = {
+        // funds: this.$store.getters.funds,
+        stocksPortofolio: this.$store.getters.stocksPortofolio
+        // stocks: this.$store.getters.stocks
+      }
+      // console.log(JSON.stringify(data.stocksPortofolio[0].quantity) + 'INI DATA');
+      // axios.post('http://localhost:3000/memory', data)
+      // .then(r => r.data)
+      // .then(response => {
+      //   console.log(response);
+      // })
+      this.$http.post('http://localhost:3000/memory', data)
+      .then(response => {
+        console.log(response.json());
+        response.json()
+      })
+    },
+    loadData() {
+
     }
   }
 }
